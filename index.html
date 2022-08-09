@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="bfe.css">
-		<title>Best Facts Ever</title>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Guy Rimel - Portfolio</title>
+	<link rel="shortcut icon" href="img/icon/RLogoNoName.ico" type="image/x-icon">
+	<!-- Style Links -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Inconsolata:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.production.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.draft.css">
+</head>
 
 	<body onload="startup()">
+		<!-- Here are more categories. Currently, it's just a Fact app. But it could be expanded to Facts and other categories too... -->
 
-		<div id="startPage" style="display: none">
-			<div class="header">BFE!</div>
+		<div id="startPage">
+			<div>BFE!</div>
 			<button class="animate-left center blue catHomeBtn" onclick="showCatHome(0)">Facts</button>
 			<button class="animate-right center orange catHomeBtn" onclick="showCatHome(1)">Jokes</button>
 			<button class="animate-left center green catHomeBtn" onclick="showCatHome(2)">Memes</button>
@@ -19,7 +24,7 @@
 
 		<div id="catHome">
 			<div class="header center" onclick="" id="catHomeTitle">Best Facts Ever</div>
-			<div id="catHomeRow">
+			<div id="catHomeRow" class="center">
 
 				<!-- This is where "main.js" will generate the different category buttons in the "startup()" function -->
 
@@ -27,27 +32,29 @@
 		</div>
 
 
-		<div id="slidePage" style="display: none">
-			<div class="header" onclick="showCatHome(0)" id="slideTitle">
+		<div id="slidePage">
+			<div onclick="showCatHome(0)" id="slideTitle">
 				<!-- <div id="chTitle">chTitle</div>| -->
-				<div id="cTitle">cTitle</div>|
-				<div id="scTitle">scTitle</div>
+				<h1 class="pad5">&#8962;</h1>
+				<h1 id="cTitle">cTitle</h1>
+				<h1 class="pad5"> | </h1>
+				<h1 id="scTitle">scTitle</h1>
 			</div>
 
 				<div id="slide" class="animate-bottom" onclick="slideClicked()">
-					<div id="imgContainer" class="overflowHidden"><img class="height100pct overflowHidden" id="slideImg"></div>
-					<div id="slideText">slide1</div>
+					<img id="slideImg" class="slideImg height-80vh">
+					<div id="slideText">this is the slide text</div>
 				</div>
 
 				<div id="navBtnContainer">
-					<button class="navBtn" onclick="changeSlide(-1)">&#10094;</button>
-					<button class="navBtn" onclick="changeSlide(1)">&#10095;</button>
+					<button onclick="changeSlide(-1)">&#10094;</button>
+					<button onclick="changeSlide(1)">&#10095;</button>
 			</div>
 		</div>
 
 		<!-- Bottom Scripts -->
-		<script src="facts.js"></script>
-		<script src="main.js"></script>
+		<script src="js/facts.js"></script>
+		<script src="js/main.js"></script>
 
 	</body>
 </html>
