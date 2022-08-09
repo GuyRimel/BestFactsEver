@@ -15,7 +15,7 @@ var FactsObj = {
 		//This "0" is the object name of the first SUB-CATEGORY for indexing purposes
 		0: {
 			config:{
-				subCatTitle: "Greek",
+				subCatTitle: "Greco-Roman",
 				subCatColor: "#CE4629",
 				index: 0,
 			},
@@ -80,7 +80,7 @@ var FactsObj = {
 	//This is the object name of the CATEGORY
 	1:{
 		config:{
-			catTitle: "Creatures",
+			catTitle: "Nature",
 			catColor: "#9EC221",
 		},
 
@@ -119,7 +119,7 @@ var FactsObj = {
 		//This is the object name of the SUB-CATEGORY for indexing purposes
 		1: {
 			config:{
-				subCatTitle: "Rare Specimens",
+				subCatTitle: "Specimens",
 				subCatColor: "#4EC7A6",
 				index: 0,
 			},
@@ -159,7 +159,7 @@ var FactsObj = {
 		//This is the object name of a SUB-CATEGORY for indexing purposes
 		0: {
 			config:{
-				subCatTitle: "Strange Deaths",
+				subCatTitle: "Darwin-Award-Winners",
 				subCatColor: "#860303",
 				index: 0,
 			},
