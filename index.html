@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="bfe.css">
+		<title>Best Facts Ever</title>
+	</head>
+
+	<body onload="startup()">
+
+		<div id="startPage" style="display: none">
+			<div class="header">BFE!</div>
+			<button class="animate-left center blue catHomeBtn" onclick="showCatHome(0)">Facts</button>
+			<button class="animate-right center orange catHomeBtn" onclick="showCatHome(1)">Jokes</button>
+			<button class="animate-left center green catHomeBtn" onclick="showCatHome(2)">Memes</button>
+		</div>
+
+
+		<div id="catHome">
+			<div class="header center" onclick="" id="catHomeTitle">Best Facts Ever</div>
+			<div id="catHomeRow">
+
+				<!-- This is where "main.js" will generate the different category buttons in the "startup()" function -->
+
+			</div>
+		</div>
+
+
+		<div id="slidePage" style="display: none">
+			<div class="header" onclick="showCatHome(0)" id="slideTitle">
+				<!-- <div id="chTitle">chTitle</div>| -->
+				<div id="cTitle">cTitle</div>|
+				<div id="scTitle">scTitle</div>
+			</div>
+
+				<div id="slide" class="animate-bottom" onclick="slideClicked()">
+					<div id="imgContainer" class="overflowHidden"><img class="height100pct overflowHidden" id="slideImg"></div>
+					<div id="slideText">slide1</div>
+				</div>
+
+				<div id="navBtnContainer">
+					<button class="navBtn" onclick="changeSlide(-1)">&#10094;</button>
+					<button class="navBtn" onclick="changeSlide(1)">&#10095;</button>
+			</div>
+		</div>
+
+		<!-- Bottom Scripts -->
+		<script src="facts.js"></script>
+		<script src="main.js"></script>
+
+	</body>
+</html>
