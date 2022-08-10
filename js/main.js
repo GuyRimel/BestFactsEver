@@ -54,7 +54,7 @@ function genCatHome(n) {
 
 		catBtnContainer.style.backgroundImage = "linear-gradient("+catHomes[n][i].config.catColor+", "+catHomes[n][i].config.catColor+", black)";
 		
-		$('catHomeRow').appendChild(catBtnContainer);
+		$('catHomeContent').appendChild(catBtnContainer);
 
 		let delayNum = 0;
 		let numSubCats = Object.keys(catHomes[n][i]).length-1;
@@ -74,7 +74,7 @@ function genCatHome(n) {
 			delayNum = ii%3;
 			subCatBtnContainer.innerHTML = '<div class="subCatBtn animate-right'+delayNum+'" onclick="showSubCat('+n+', '+i+', '+ii+')" id="'+subCatBtnId+'" style="'+'">'+subCatBtnText+'</div>';
 			
-			$("catHomeRow").appendChild(subCatBtnContainer);
+			$("catHomeContent").appendChild(subCatBtnContainer);
 		}
 	}
 }
