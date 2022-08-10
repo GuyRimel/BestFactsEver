@@ -143,6 +143,7 @@ function showSlide(n){
 
 	$('slidePage').style.backgroundImage = "linear-gradient("+catHomes[catHome][cat][subCat].config.subCatColor+", "+catHomes[catHome][cat].config.catColor+",black)";
 	$('slideImg').src =  'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
+	$('slideImg').alt =  'image src is... ' + 'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
 	$('slideText').innerHTML = catHomes[catHome][cat][subCat][currIndex].text;
 }
 

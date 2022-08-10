@@ -4,7 +4,7 @@ var FactsObj = {
 		catHomeColor: "#00F2F7",
 	},
 
-	//This "0" is the object name of the first CATEGORY for indexing purposes
+	// Category: Mythology
 	0:{
 		config:{
 			catTitle: "Mythology",
@@ -12,7 +12,7 @@ var FactsObj = {
 			catPic: "",
 		},
 
-		//This "0" is the object name of the first SUB-CATEGORY for indexing purposes
+		// Sub-Category: Greco-Roman
 		0: {
 			config:{
 				subCatTitle: "Greco-Roman",
@@ -44,7 +44,7 @@ var FactsObj = {
 			},
 		},
 
-		//This "1" is the object name of the second SUB-CATEGORY for indexing purposes
+		// Sub-Category: Norse
 		1: {
 			config:{
 				subCatTitle: "Norse",
@@ -77,17 +77,17 @@ var FactsObj = {
 		},
 	},
 
-	//This is the object name of the CATEGORY
+	// Category: Nature
 	1:{
 		config:{
 			catTitle: "Nature",
 			catColor: "#9EC221",
 		},
 
-		//This is the object name of a SUB-CATEGORY for indexing purposes
+		// Sub-Category: Weather
 		0: {
 			config:{
-				subCatTitle: "Extreme Abilities",
+				subCatTitle: "Weather",
 				subCatColor: "#EC1F0F",
 				index: 0,
 			},
@@ -116,7 +116,7 @@ var FactsObj = {
 			},
 		},
 
-		//This is the object name of the SUB-CATEGORY for indexing purposes
+		// Sub-Category: Specimens
 		1: {
 			config:{
 				subCatTitle: "Specimens",
@@ -149,14 +149,14 @@ var FactsObj = {
 		},
 	},
 
-	//This is the object name of the CATEGORY
+	// Category: Freaky
 	2:{
 		config:{
 			catTitle: "Freaky",
 			catColor: "#5AED6B",
 		},
 
-		//This is the object name of a SUB-CATEGORY for indexing purposes
+		// Sub-Category: Darwin-Award-Winners
 		0: {
 			config:{
 				subCatTitle: "Darwin-Award-Winners",
