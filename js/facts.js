@@ -8,6 +8,7 @@ let FactsObj = {
 	0: {
 		config:{
 			catTitle: "Mythology",
+			pathName: "mythology",
 			catColor: "#F4C13B",
 			catPic: "",
 		},
@@ -16,6 +17,7 @@ let FactsObj = {
 		0: {
 			config:{
 				subCatTitle: "Greco-Roman",
+				pathName: "greco-roman",
 				subCatColor: "#CE4629",
 				index: 0,
 			},
@@ -48,6 +50,7 @@ let FactsObj = {
 		1: {
 			config:{
 				subCatTitle: "Norse",
+				pathName: "norse",
 				subCatColor: "#417659",
 				index: 0,
 			},
@@ -81,6 +84,7 @@ let FactsObj = {
 	1: {
 		config:{
 			catTitle: "Nature",
+			pathName: "nature",
 			catColor: "#9EC221",
 		},
 
@@ -88,6 +92,7 @@ let FactsObj = {
 		0: {
 			config:{
 				subCatTitle: "Weather",
+				pathName: "weather",
 				subCatColor: "#EC1F0F",
 				index: 0,
 			},
@@ -120,6 +125,7 @@ let FactsObj = {
 		1: {
 			config:{
 				subCatTitle: "Specimens",
+				pathName: "specimens",
 				subCatColor: "#4EC7A6",
 				index: 0,
 			},
@@ -153,13 +159,15 @@ let FactsObj = {
 	2: {
 		config:{
 			catTitle: "Freaky",
+			pathName: "freaky",
 			catColor: "#5AED6B",
 		},
 
 		// Sub-Category: Darwin-Award-Winners
 		0: {
 			config:{
-				subCatTitle: "Darwin-Award-Winners",
+				subCatTitle: "Darwin Award Winners",
+				pathName: "darwin-award-winners",
 				subCatColor: "#860303",
 				index: 0,
 			},
