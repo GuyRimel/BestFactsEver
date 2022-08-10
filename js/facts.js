@@ -5,7 +5,7 @@ var FactsObj = {
 	},
 
 	// Category: Mythology
-	0:{
+	0: {
 		config:{
 			catTitle: "Mythology",
 			catColor: "#F4C13B",
