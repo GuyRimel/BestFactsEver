@@ -1,5 +1,5 @@
-var FactsObj = {
-	config:{
+let FactsObj = {
+	config: {
 		catHomeTitle: "Facts",
 		catHomeColor: "#00F2F7",
 	},
@@ -78,7 +78,7 @@ var FactsObj = {
 	},
 
 	// Category: Nature
-	1:{
+	1: {
 		config:{
 			catTitle: "Nature",
 			catColor: "#9EC221",
@@ -150,7 +150,7 @@ var FactsObj = {
 	},
 
 	// Category: Freaky
-	2:{
+	2: {
 		config:{
 			catTitle: "Freaky",
 			catColor: "#5AED6B",

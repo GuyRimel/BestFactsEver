@@ -1,14 +1,14 @@
 // Structure: category home (facts) > category (mythology) > sub-category (greek) > current index (slide)
-var catHome = 0;
-var cat = 0;
-var subCat = 0;
-var currIndex = 0;
-var numSlides = 0;
+let catHome = 0;
+let cat = 0;
+let subCat = 0;
+let currIndex = 0;
+let numSlides = 0;
 
 // *bug alert* need to make a slide index and numSlides for each subCategory to keep place when returning
 // AND to never have an index greater than the total number of slides
 
-var catHomes = [FactsObj];
+let catHomes = [FactsObj];
 
 // var catHomeTitles = [ "Facts", "Jokes", "Memes" ];
 
