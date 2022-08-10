@@ -4,6 +4,7 @@ let cat = 0;
 let subCat = 0;
 let currIndex = 0;
 let numSlides = 0;
+let imgFolder = "https://guyrimel.github.io/BestFactsEver/img/"
 
 // *feature request* need to make a slide index and numSlides for each subCategory to keep place when returning
 // AND to never have an index greater than the total number of slides
@@ -134,8 +135,8 @@ function showSlide(n){
 	console.log("n: "+currIndex+" of "+numSlides);
 
 	$('slidePage').style.backgroundImage = "linear-gradient(" + catHomes[catHome][cat][subCat].config.subCatColor+", " + catHomes[catHome][cat].config.catColor + ",black)";
-	$('slideImg').src =  'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
-	$('slideImg').alt =  'image src is... ' + 'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
+	$('slideImg').src =  '/img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
+	$('slideImg').alt =  'image src is... ' + '/img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
 	$('slideText').innerHTML = catHomes[catHome][cat][subCat][currIndex].text;
 }
 
