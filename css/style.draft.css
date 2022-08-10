@@ -88,8 +88,25 @@ body {
 	height: 95vh;
 }
 
+.mar5 {
+	margin: 5px;
+}
+
+.mar10 {
+	margin: 10px;
+}
+
 .pad5 {
 	padding: 5px;
+}
+
+.pad10 {
+	padding: 10px;
+}
+
+.absolute-bottom {
+	position: absolute;
+	bottom: 0;
 }
 
 /* IDs */
