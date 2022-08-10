@@ -5,74 +5,66 @@ let subCat = 0;
 let currIndex = 0;
 let numSlides = 0;
 
-// *bug alert* need to make a slide index and numSlides for each subCategory to keep place when returning
+// *feature request* need to make a slide index and numSlides for each subCategory to keep place when returning
 // AND to never have an index greater than the total number of slides
 
 let catHomes = [FactsObj];
 
-// var catHomeTitles = [ "Facts", "Jokes", "Memes" ];
-
-// var cat0Titles = [
-// 	"Philosophy", 			"Cosmology", 	"Biology",		"History",
-// 	"Mythology", 			"Psychology", 	"Nutrition", 	"Deaths",
-// 	"Art",					"Culture",		"Words",		"Feats",
-// 	"Counter Intuitive", 	"Anomalies",	"Practical",	"Quotes"
-// ];
-
-// var catHome0Colors = [
-// 	"#1C7ED5", 				"#8E3068", 		"#92DE37",		"#DB9F4B",
-// 	"#F4C13B", 				"#EFB9B1", 		"#D64A37", 		"#860303",
-// 	"#45DDDA", 				"#F2BB6C",		"#BDD2F7",		"#F75700",
-// 	"#E45C56", 				"#932291",		"#4A9529",		"#aabbcc"
-// ];
-
+// to use "$()" instead of "document.getElementById()"
 function $(id) { 
 	return document.getElementById(id); 
 }
 
+// generates then shows the category homepage. currently statically loading "0" which is "Facts"
 function startup() {
 	genCatHome(0);
 	showCatHome(0);
 }
 
+
 function genCatHome(n) {
 	let numCats = Object.keys(catHomes[n]).length-1;
-	console.log("numCats: " + numCats);
+	// console.log("numCats: " + numCats);
 
+	// create category button container elements
 	for (i=0; i < numCats; i++) {
 		let catBtnContainer = document.createElement('div');
 		let catBtnText = catHomes[n][i].config.catTitle;
-		let catBtnId = "cat"+n+"_"+i+"Btn";
+		let catBtnId = "cat" + n + "_" + i + "Btn";
 
 		catBtnContainer.classList.add("catBtnContainer");
-		if(i%2){
-			catBtnContainer.classList.add("animate-left");
-		} else{
-			catBtnContainer.classList.add("animate-right");
-		}
-		catBtnContainer.innerHTML = '<button class="catBtn" onclick="showCat('+n+', '+i+')" id="'+catBtnId+'">'+catBtnText+'</div>';
 
-		catBtnContainer.style.backgroundImage = "linear-gradient("+catHomes[n][i].config.catColor+", "+catHomes[n][i].config.catColor+", black)";
+		// give each catBtnContainer an alternating animation
+		if(i % 2){
+			catBtnContainer.classList.add("animate-left1");
+		} else{
+			catBtnContainer.classList.add("animate-right1");
+		}
+
+		// create category elements inside the created containers
+		catBtnContainer.innerHTML = '<button class="catBtn" onclick="showCat(' + n + ', ' + i + ')" id="' + catBtnId + '">'+catBtnText + '</div>';
+		catBtnContainer.style.backgroundColor = catHomes[n][i].config.catColor;
 		
+		// append id="catHomeContent" with the created category button container
 		$('catHomeContent').appendChild(catBtnContainer);
 
-		let delayNum = 0;
-		let numSubCats = Object.keys(catHomes[n][i]).length-1;
-		console.log("n: "+n+"  i: "+i+"  numSubCats: "+numSubCats);
+		// empty string = .3s, 1 = .6s, 2 = .9s
+		let delayMod = '';
+		let numSubCats = Object.keys(catHomes[n][i]).length - 1;
+		console.log("n: " + n + "  i: " + i + "  numSubCats: " + numSubCats);
 
-		for(ii=0;ii<numSubCats;ii++){
+		for(ii=0; ii < numSubCats; ii++){
 			let subCatBtnContainer = document.createElement('div');
 			let subCatBtnText = catHomes[n][i][ii].config.subCatTitle;
-			let subCatBtnId = "subCat"+n+"_"+i+"_"+ii+"Btn";
+			let subCatBtnId = "subCat" + n + "_" + i + "_" + ii + "Btn";
 
-			subCatBtnContainer.style.backgroundImage = "linear-gradient("+catHomes[n][i][ii].config.subCatColor+", "+catHomes[n][i][ii].config.subCatColor+", black)";
-
-			subCatBtnContainer.id = "subCat"+n+"_"+i+"_"+ii
+			subCatBtnContainer.style.backgroundColor = catHomes[n][i][ii].config.subCatColor;
+			subCatBtnContainer.id = "subCat" + n + "_"+i + "_" + ii
 			subCatBtnContainer.classList.add("subCatBtnContainer");
 			subCatBtnContainer.classList.add("hide");
 
-			delayNum = ii%3;
-			subCatBtnContainer.innerHTML = '<div class="subCatBtn animate-right'+delayNum+'" onclick="showSubCat('+n+', '+i+', '+ii+')" id="'+subCatBtnId+'" style="'+'">'+subCatBtnText+'</div>';
+			delayMod = ii % 3;
+			subCatBtnContainer.innerHTML = '<div class="subCatBtn animate-right' + delayMod + '" onclick="showSubCat('+n+', '+i+', '+ii+')" id="' + subCatBtnId+'" style="' + '">'+subCatBtnText + '</div>';
 			
 			$("catHomeContent").appendChild(subCatBtnContainer);
 		}
@@ -87,7 +79,7 @@ function showStartPage(){
 
 function showCatHome(n){
 	catHome = n;
-	console.log("catHome: "+n);
+	// console.log("catHome: " + n);
 
 	$('startPage').style.display = "none";
 	$('catHome').style.display = "block";
@@ -99,12 +91,12 @@ function showCatHome(n){
 function showCat(ch, n){
 	catHome = ch;
 	cat = n;
-	console.log("cat: "+n);
+	console.log("cat: " + n);
 
-	let numSubCats = Object.keys(catHomes[ch][n]).length-1;
+	let numSubCats = Object.keys(catHomes[ch][n]).length - 1;
 
-	for(i=0;i<numSubCats;i++){
-		let subCatId = "subCat"+ch+"_"+n+"_"+i;
+	for(i=0;i<numSubCats; i++){
+		let subCatId = "subCat"+ch+"_" + n + "_" + i;
 		$(subCatId).classList.toggle("hide");
 	}
 }
@@ -113,7 +105,7 @@ function showSubCat(ch, c, n){
 	catHome = ch;
 	cat = c;
 	subCat = n;
-	console.log("subCat: "+n);
+	console.log("subCat: " + n);
 
 	$('startPage').style.display = "none";
 	$('catHome').style.display = "none";
@@ -134,21 +126,21 @@ function showSubCat(ch, c, n){
 function showSlide(n){
 	currIndex = n;
 
-	if(currIndex > numSlides){ currIndex = 0;}
-	if(currIndex < 0){ currIndex = numSlides}
+	if(currIndex > numSlides) { currIndex = 0; }
+	if(currIndex < 0){ currIndex = numSlides; }
 
-	catHomes[catHome][cat][subCat].config.index = currIndex;
+	catHomes [catHome] [cat] [subCat].config.index = currIndex;
 
 	console.log("n: "+currIndex+" of "+numSlides);
 
-	$('slidePage').style.backgroundImage = "linear-gradient("+catHomes[catHome][cat][subCat].config.subCatColor+", "+catHomes[catHome][cat].config.catColor+",black)";
+	$('slidePage').style.backgroundImage = "linear-gradient(" + catHomes[catHome][cat][subCat].config.subCatColor+", " + catHomes[catHome][cat].config.catColor + ",black)";
 	$('slideImg').src =  'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
 	$('slideImg').alt =  'image src is... ' + 'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
 	$('slideText').innerHTML = catHomes[catHome][cat][subCat][currIndex].text;
 }
 
 function changeSlide(n) {
-	currIndex+=n;
+	currIndex += n;
 	catHomes[catHome][cat][subCat].config.index = currIndex;
 	showSlide(currIndex);
 }

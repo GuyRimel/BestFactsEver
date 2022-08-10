@@ -1,60 +1,62 @@
 <!DOCTYPE html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Best Facts Ever</title>
-	<link rel="shortcut icon" href="img/icon/RLogoNoName.ico" type="image/x-icon">
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Best Facts Ever</title>
+		<link rel="shortcut icon" href="img/icon/RLogoNoName.ico" type="image/x-icon">
 
-	<!-- Style Links -->
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Inconsolata:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<!-- <link rel="stylesheet" type="text/css" href="css/style.production.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/style.draft.css">
-</head>
+		<!-- style links -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Inconsolata:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+		<!-- <link rel="stylesheet" type="text/css" href="css/style.production.css"> -->
+		<link rel="stylesheet" type="text/css" href="css/style.draft.css">
+	</head>
 
-	<body onload="startup()">
-		<!-- Here are more categories for future expansion... but right now it's just facts-->
-		<div id="startPage">
-			<div>BFE!</div>
-			<button class="animate-left center blue catHomeBtn" onclick="showCatHome(0)">Facts</button>
-			<button class="animate-right center orange catHomeBtn" onclick="showCatHome(1)">Jokes</button>
-			<button class="animate-left center green catHomeBtn" onclick="showCatHome(2)">Memes</button>
-		</div>
+  <body onload="startup()">
+    <!-- here are more categories for future expansion... but right now these don't show. -->
+    <div id="startPage">
+      <div>BFE!</div>
+      <button class="animate-left center blue catHomeBtn" onclick="showCatHome(0)">Facts</button>
+      <button class="animate-right center orange catHomeBtn" onclick="showCatHome(1)">Jokes</button>
+      <button class="animate-left center green catHomeBtn" onclick="showCatHome(2)">Memes</button>
+    </div>
 
+    <!-- id="catHome" is the "Facts" Homepage. -->
+    <div id="catHome">
+      <div class="header center" id="catHomeTitle">Best Facts Ever</div>
+      <div id="catHomeContent" class="center">
+        <!-- categories and subcategories populate here -->
+      </div>
+    </div>
 
-		<div id="catHome">
-			<div class="header center" onclick="" id="catHomeTitle">Best Facts Ever</div>
-			<div id="catHomeRow" class="center">
+    <!-- id="slidePage" contains the slide title, the slide (image and text), and the nav buttons -->
+    <div id="slidePage">
 
-				<!-- This is where "main.js" will generate the different category buttons in the "startup()" function -->
+      <!-- slide title populates as "Category" | "Subcategory" -->
+      <div onclick="showCatHome(0)" id="slideTitle">
+        <h1 class="pad5">&#8962;</h1>
+        <h1 id="cTitle">Category Title</h1>
+        <h1 class="pad5"> | </h1>
+        <h1 id="scTitle">Subcategory Title</h1>
+      </div>
 
-			</div>
-		</div>
+      <!-- slide include image and text from facts.js -->
+      <div id="slide" class="animate-bottom" onclick="slideClicked()">
+        <img id="slideImg" class="slideImg height-80vh">
+        <div id="slideText">this is the slide text</div>
+      </div>
 
+      <!-- back button and forward button to change slide -->
+      <div id="navBtnContainer">
+        <button onclick="changeSlide(-1)">&#10094;</button>
+        <button onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </div>
 
-		<div id="slidePage">
-			<div onclick="showCatHome(0)" id="slideTitle">
-				<!-- <div id="chTitle">chTitle</div>| -->
-				<h1 class="pad5">&#8962;</h1>
-				<h1 id="cTitle">cTitle</h1>
-				<h1 class="pad5"> | </h1>
-				<h1 id="scTitle">scTitle</h1>
-			</div>
+    <!-- bottom scripts -->
+    <script src="js/facts.js"></script>
+    <script src="js/main.js"></script>
 
-				<div id="slide" class="animate-bottom" onclick="slideClicked()">
-					<img id="slideImg" class="slideImg height-80vh">
-					<div id="slideText">this is the slide text</div>
-				</div>
-
-				<div id="navBtnContainer">
-					<button onclick="changeSlide(-1)">&#10094;</button>
-					<button onclick="changeSlide(1)">&#10095;</button>
-			</div>
-		</div>
-
-		<!-- Bottom Scripts -->
-		<script src="js/facts.js"></script>
-		<script src="js/main.js"></script>
-
-	</body>
+  </body>
 </html>

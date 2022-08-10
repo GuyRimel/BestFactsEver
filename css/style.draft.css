@@ -45,8 +45,9 @@ body {
 
 .catBtn,
 .subCatBtn {
-	padding: 10px 10%;
 	width: 100%;
+	margin: 1px 0;
+	padding: 10px 10%;
 	cursor: pointer;
 }
 
@@ -63,10 +64,10 @@ body {
 }
 
 .catBtn {
-	background-color: #112;
+	background-color: #334;
 }
 .subCatBtn {
-	background-color: #223
+	background-color: #113;
 }
 
 .hide {
@@ -157,26 +158,28 @@ body {
 }
 
 /* Animations from W3.CSS 4.13 */
-.animate-top {
-	position: relative;
-	animation: animatetop 0.3s;
-}
-
 @keyframes animatetop {
 	from {
 		top: -500px;
 		opacity: 0;
 	}
-
+	
 	to {
 		top: 0;
 		opacity: 1;
 	}
 }
 
-.animate-bottom {
-	position: relative;
-	animation: animatebottom 0.3s;
+@keyframes animateright {
+	from {
+		right: -1920px;
+		opacity: 0;
+	}
+	
+	to {
+		right: 0;
+		opacity: 1;
+	}
 }
 
 @keyframes animatebottom {
@@ -184,16 +187,11 @@ body {
 		bottom: -500px;
 		opacity: 0;
 	}
-
+	
 	to {
 		bottom: 0;
 		opacity: 1;
 	}
-}
-
-.animate-left {
-	position: relative;
-	animation: animateleft 0.3s;
 }
 
 @keyframes animateleft {
@@ -201,97 +199,21 @@ body {
 		left: -1920px;
 		opacity: 0;
 	}
-
+	
 	to {
 		left: 0;
 		opacity: 1;
 	}
 }
 
-.animate-right {
-	position: relative;
-	animation: animateright 0.3s;
-}
-
-@keyframes animateright {
-	from {
-		right: -1920px;
-		opacity: 0;
-	}
-
-	to {
-		right: 0;
-		opacity: 1;
-	}
-}
-
-.animate-right0 {
-	position: relative;
-	animation: animateright 0.3s;
-}
-
-@keyframes animateright {
-	from {
-		right: -1920px;
-		opacity: 0;
-	}
-
-	to {
-		right: 0;
-		opacity: 1;
-	}
-}
-
-.animate-right1 {
-	position: relative;
-	animation: animateright 0.6s;
-}
-
-@keyframes animateright {
-	from {
-		right: -1920px;
-		opacity: 0;
-	}
-
-	to {
-		right: 0;
-		opacity: 1;
-	}
-}
-
-.animate-right2 {
-	position: relative;
-	animation: animateright 0.9s;
-}
-
-@keyframes animateright {
-	from {
-		right: -1920px;
-		opacity: 0;
-	}
-
-	to {
-		right: 0;
-		opacity: 1;
-	}
-}
-
-.animate-zoom {
-	animation: animatezoom 0.3s;
-}
-
 @keyframes animatezoom {
 	from {
 		transform: scale(0);
 	}
-
+	
 	to {
 		transform: scale(1);
 	}
-}
-
-.animate-opacity {
-	animation: opac 0.8s;
 }
 
 @keyframes opac {
@@ -302,4 +224,52 @@ body {
 	to {
 		opacity: 1;
 	}
+}
+	
+.animate-top {
+	position: relative;
+	animation: animatetop 0.3s;
+}		
+
+.animate-bottom {
+	position: relative;
+	animation: animatebottom 0.3s;
+}	
+
+.animate-right0 {
+	position: relative;
+	animation: animateright 0.3s;
+}
+
+.animate-right1 {
+	position: relative;
+	animation: animateright 0.6s;
+}
+
+.animate-right2 {
+	position: relative;
+	animation: animateright 0.9s;
+}
+
+.animate-left0 {
+	position: relative;
+	animation: animateleft 0.3s;
+}
+
+.animate-left1 {
+	position: relative;
+	animation: animateleft 0.6s;
+}
+
+.animate-left2 {
+	position: relative;
+	animation: animateleft 0.9s;
+}
+
+.animate-zoom {
+	animation: animatezoom 0.3s;
+}
+
+.animate-opacity {
+	animation: opac 0.8s;
 }
