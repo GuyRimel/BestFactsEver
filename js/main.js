@@ -1,162 +1,108 @@
-// Structure: category home (facts) > category (mythology) > sub-category (greek) > current index (slide)
-var catHome = 0;
-var cat = 0;
-var subCat = 0;
-var currIndex = 0;
-var numSlides = 0;
+// totalCats is -1 bc of the "config" object
+let totalCats = Object.keys(factsObj).length-1;
 
-// *bug alert* need to make a slide index and numSlides for each subCategory to keep place when returning
-// AND to never have an index greater than the total number of slides
+// Structure: category (mythology) > sub-category (greek) > current index (slide) of (totalSubcatSlides)
+// Any variable with "total" or "Num" refers to a number type
+let cat;
+let subcat;
+let slide;
+let totalSubcatSlides;
 
-var catHomes = [FactsObj];
+// Declarations for element creation;
+// totalCats - 1 to skip the "config" object
+let catBtnContainer;
+let catBtnId;
+let catBtnText;
+let subcatBtnContainer;
+let delay = 0;
+let totalSubcats;
+let catColor;
+let subcatColor;
 
-// var catHomeTitles = [ "Facts", "Jokes", "Memes" ];
-
-// var cat0Titles = [
-// 	"Philosophy", 			"Cosmology", 	"Biology",		"History",
-// 	"Mythology", 			"Psychology", 	"Nutrition", 	"Deaths",
-// 	"Art",					"Culture",		"Words",		"Feats",
-// 	"Counter Intuitive", 	"Anomalies",	"Practical",	"Quotes"
-// ];
-
-// var catHome0Colors = [
-// 	"#1C7ED5", 				"#8E3068", 		"#92DE37",		"#DB9F4B",
-// 	"#F4C13B", 				"#EFB9B1", 		"#D64A37", 		"#860303",
-// 	"#45DDDA", 				"#F2BB6C",		"#BDD2F7",		"#F75700",
-// 	"#E45C56", 				"#932291",		"#4A9529",		"#aabbcc"
-// ];
-
+// $(idString) == document.getElementById(idString);
 function $(id) { 
 	return document.getElementById(id); 
 }
 
+// Attached to <body onload="">
 function startup() {
-	genCatHome(0);
-	showCatHome(0);
+	generateHomepage();
+	showHomepage();
 }
 
-function genCatHome(n) {
-	let numCats = Object.keys(catHomes[n]).length-1;
-	console.log("numCats: " + numCats);
+// Performed ONCE during startup (body onload). Populates #homepage__main
+function generateHomepage() {
+	for (cat = 0; cat < totalCats; cat++) {
+		catBtnId = `cat${cat}Btn`;
+		catBtnText = factsObj[cat].config.catTitle;
+		catBtnContainer = document.createElement('div');
+		catBtnContainer.style.backgroundColor = factsObj[cat].config.catColor;
+		catBtnContainer.classList.add("catBtnContainer", "animate-right");
+		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${cat})" id="${catBtnId}">${catBtnText}</div>`;
 
-	for (i=0; i < numCats; i++) {
-		let catBtnContainer = document.createElement('div');
-		let catBtnText = catHomes[n][i].config.catTitle;
-		let catBtnId = "cat"+n+"_"+i+"Btn";
+		$('homepage__main').appendChild(catBtnContainer);
 
-		catBtnContainer.classList.add("catBtnContainer");
-		if(i%2){
-			catBtnContainer.classList.add("animate-left");
-		} else{
-			catBtnContainer.classList.add("animate-right");
-		}
-		catBtnContainer.innerHTML = '<button class="catBtn" onclick="showCat('+n+', '+i+')" id="'+catBtnId+'">'+catBtnText+'</div>';
+		// totalSubcats -1 to skip the "config" object
+		totalSubcats = Object.keys(factsObj[cat]).length-1;
+		for(subcat = 0; subcat < totalSubcats; subcat ++) {
+			subcatBtnContainer = document.createElement('div');
+			subcatBtnText = factsObj[cat][subcat].config.subcatTitle;
+			subcatBtnId = `subcat${cat}_${subcat}Btn`;
 
-		catBtnContainer.style.backgroundImage = "linear-gradient("+catHomes[n][i].config.catColor+", "+catHomes[n][i].config.catColor+", black)";
-		
-		$('catHomeRow').appendChild(catBtnContainer);
+			subcatBtnContainer.style.backgroundImage = `linear-gradient(${factsObj[cat][subcat].config.subcatColor}, ${factsObj[cat][subcat].config.subcatColor}, black)`;
 
-		let delayNum = 0;
-		let numSubCats = Object.keys(catHomes[n][i]).length-1;
-		console.log("n: "+n+"  i: "+i+"  numSubCats: "+numSubCats);
+			subcatBtnContainer.id = `subcat${cat}_${subcat}`;
+			subcatBtnContainer.classList.add("subcatBtnContainer");
+			subcatBtnContainer.classList.add("hide");
 
-		for(ii=0;ii<numSubCats;ii++){
-			let subCatBtnContainer = document.createElement('div');
-			let subCatBtnText = catHomes[n][i][ii].config.subCatTitle;
-			let subCatBtnId = "subCat"+n+"_"+i+"_"+ii+"Btn";
-
-			subCatBtnContainer.style.backgroundImage = "linear-gradient("+catHomes[n][i][ii].config.subCatColor+", "+catHomes[n][i][ii].config.subCatColor+", black)";
-
-			subCatBtnContainer.id = "subCat"+n+"_"+i+"_"+ii
-			subCatBtnContainer.classList.add("subCatBtnContainer");
-			subCatBtnContainer.classList.add("hide");
-
-			delayNum = ii%3;
-			subCatBtnContainer.innerHTML = '<div class="subCatBtn animate-right'+delayNum+'" onclick="showSubCat('+n+', '+i+', '+ii+')" id="'+subCatBtnId+'" style="'+'">'+subCatBtnText+'</div>';
+			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right ${delay}" onclick="showSlide(${cat}, ${subcat}, 0)" id="${subcatBtnId}">${subcatBtnText}</div>`;
 			
-			$("catHomeRow").appendChild(subCatBtnContainer);
+			$('homepage__main').appendChild(subcatBtnContainer);
 		}
 	}
 }
 
-function showStartPage(){
-	$('startPage').style.display = "flex";
-	$('catHome').style.display = "none";
-	$('slidePage').style.display = "none";
+function showHomepage(){
+	$('homepage').style.display = "flex-column";
+	$('slidepage').style.display = "none";
 }
 
-function showCatHome(n){
-	catHome = n;
-	console.log("catHome: "+n);
-
-	$('startPage').style.display = "none";
-	$('catHome').style.display = "block";
-	$('slidePage').style.display = "none";
-
-	$('catHomeTitle').style.color = catHomes[n].config.catHomeColor;
-}
-
-function showCat(ch, n){
-	catHome = ch;
-	cat = n;
-	console.log("cat: "+n);
-
-	let numSubCats = Object.keys(catHomes[ch][n]).length-1;
-
-	for(i=0;i<numSubCats;i++){
-		let subCatId = "subCat"+ch+"_"+n+"_"+i;
-		$(subCatId).classList.toggle("hide");
+function showSubcats(cat){
+	totalSubcats = Object.keys(factsObj[cat]).length-1;
+	for(i = 0; i < totalSubcats; i ++) {
+		let subcatId = `subcat${cat}_${i}`;
+		$(subcatId).classList.toggle("hide");
 	}
 }
 
-function showSubCat(ch, c, n){
-	catHome = ch;
-	cat = c;
-	subCat = n;
-	console.log("subCat: "+n);
+function showSlide(cat, subcat, slide){
+	totalSubcatSlides = Object.keys(factsObj[0][0]).length -1;
+	slide = factsObj[cat][subcat].config.index;
 
-	$('startPage').style.display = "none";
-	$('catHome').style.display = "none";
-	$('slidePage').style.display = "flex";
+	if(slide > totalSubcatSlides ) { slide = 0; }
+	if(slide < 0) { slide = totalSubcatSlides }
+	
+	console.log(`${slide} of ${totalSubcatSlides}`);	
+	
+	$('slidepage').style.backgroundImage = "linear-gradient("+factsObj[cat][subcat].config.subcatColor+", "+factsObj[cat].config.catColor+",black)";
+	$('slide__img').src =  'img/' + factsObj[cat].config.catTitle + '/' + factsObj[cat][subcat].config.subcatTitle + '/' + factsObj[cat][subcat][slide].pic;
+	$('slide__img').alt =  'image src is... ' + 'img/' + factsObj[cat].config.catTitle + '/' + factsObj[cat][subcat].config.subcatTitle + '/' +  factsObj[cat][subcat][slide].pic;
+	$('slide__text').innerHTML = factsObj[cat][subcat][slide].text;
 
-	$('cTitle').innerHTML = catHomes[ch][c].config.catTitle;
-	$('cTitle').style.color = catHomes[ch][c].config.catColor;
-
-	$('scTitle').innerHTML = catHomes[ch][c][n].config.subCatTitle;
-	$('scTitle').style.color = catHomes[ch][c][n].config.subCatColor;
-
-	currIndex = catHomes[ch][c][n].config.index;
-	numSlides = Object.keys(catHomes[catHome][cat][subCat]).length - 2;
-
-	showSlide(currIndex);
-}
-
-function showSlide(n){
-	currIndex = n;
-
-	if(currIndex > numSlides){ currIndex = 0;}
-	if(currIndex < 0){ currIndex = numSlides}
-
-	catHomes[catHome][cat][subCat].config.index = currIndex;
-
-	console.log("n: "+currIndex+" of "+numSlides);
-
-	$('slidePage').style.backgroundImage = "linear-gradient("+catHomes[catHome][cat][subCat].config.subCatColor+", "+catHomes[catHome][cat].config.catColor+",black)";
-	$('slideImg').src =  'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
-	$('slideImg').alt =  'image src is... ' + 'img/' + catHomes[catHome][cat].config.catTitle + '/' + catHomes[catHome][cat][subCat].config.subCatTitle + '/' +  catHomes[catHome][cat][subCat][currIndex].pic;
-	$('slideText').innerHTML = catHomes[catHome][cat][subCat][currIndex].text;
+	$('homepage').style.display = 'none';
+	$('slidepage').style.display = 'flex-column';
 }
 
 function changeSlide(n) {
-	currIndex+=n;
-	catHomes[catHome][cat][subCat].config.index = currIndex;
-	showSlide(currIndex);
+	index += n;
+	factsObj[cat][subcat].config.index = index;
+	showSlide(index);
 }
 
 function slideClicked() {
-	$('slideText').classList.toggle("hide");
-	$('slideTitle').classList.toggle("hide");
+	$('slide__text').classList.toggle("hide");
+	$('slide__title').classList.toggle("hide");
 	$('navBtnContainer').classList.toggle("hide");
 	$('slide').classList.toggle("fullscreen");
-	$('slideImg').classList.toggle("height-95vh");
+	$('slide__img').classList.toggle("height-95vh");
 }

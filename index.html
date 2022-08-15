@@ -11,50 +11,61 @@
 	<link rel="stylesheet" type="text/css" href="css/style.draft.css">
 </head>
 
-	<body onload="startup()">
-		<!-- Here are more categories for future expansion... but right now it's just facts-->
+<body onload="startup()">
+	<section id="homepage">
+		<header id="homepage__header" class="flex-row header center width100">
+			<h1>Best Facts Ever</h1>
+			<a class="absolute-right pad10">
+				gearicon
+			</a>
+		</header>
+		<main id="homepage__main" class="center">
 
-		<div id="startPage">
-			<div>BFE!</div>
-			<button class="animate-left center blue catHomeBtn" onclick="showCatHome(0)">Facts</button>
-			<button class="animate-right center orange catHomeBtn" onclick="showCatHome(1)">Jokes</button>
-			<button class="animate-left center green catHomeBtn" onclick="showCatHome(2)">Memes</button>
-		</div>
+			<!-- This is where "main.js" will generate the different category buttons in the "startup()" function -->
 
+		</main>
+	</section>
 
-		<div id="catHome">
-			<div class="header center" onclick="" id="catHomeTitle">Best Facts Ever</div>
-			<div id="catHomeRow" class="center">
-
-				<!-- This is where "main.js" will generate the different category buttons in the "startup()" function -->
-
-			</div>
-		</div>
-
-
-		<div id="slidePage">
-			<div onclick="showCatHome(0)" id="slideTitle">
-				<!-- <div id="chTitle">chTitle</div>| -->
-				<h1 class="pad5">&#8962;</h1>
-				<h1 id="cTitle">cTitle</h1>
+	<section id="slidepage" class="hide">
+		<header id="slidepage__header" class="header center space-between width100">
+			<!-- "homeicon" "Category Title" " | " " Subcategory Title" -->
+			<div id="slidepage__title" class=" flex-row center">
+				<h1 onclick="showHomepage()" id="homeIcon" class="pad5">&#8962;</h1>
+				<h1 id="catTitle">Category Title</h1>
 				<h1 class="pad5"> | </h1>
-				<h1 id="scTitle">scTitle</h1>
-			</div>
+				<h1 id="subcatTitle">Subcategory Title</h1>
+				<h1 class="pad5"> | </h1>
 
-				<div id="slide" class="animate-bottom" onclick="slideClicked()">
-					<img id="slideImg" class="slideImg height-80vh">
-					<div id="slideText">this is the slide text</div>
+				<!-- "1" " of " "100" -->
+				<div id="slidepage__pageTracker" class="flex-row center">
+					<div id="slidepage__index">1</div>
+					<h1 class="pad5"> of </h1>
+					<div id="slidepage__totalSlides">100</div>
 				</div>
-
-				<div id="navBtnContainer">
-					<button onclick="changeSlide(-1)">&#10094;</button>
-					<button onclick="changeSlide(1)">&#10095;</button>
 			</div>
+			<a class="pad10">
+				gearicon
+			</a>
+		</header>
+
+		<main id="slide" class="animate-bottom" onclick="slideClicked()">
+			<img id="slide__img">
+			<div id="slide__text">this is the slide text</div>
+		</main>
+
+		<div id="navBtnContainer" class="flex-row width100">
+			<button class="width50" onclick="changeSlide(-1)">&#10094;</button>
+			<button class="width50" onclick="changeSlide(1)">&#10095;</button>
 		</div>
+	</section>
 
-		<!-- Bottom Scripts -->
-		<script src="js/main.js"></script>
-		<script src="js/facts.js"></script>
+	<footer class="flex-row center pad10">
+		This is the footer
+	</footer>
 
-	</body>
+	<!-- Bottom Scripts -->
+	<script src="js/facts.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
 </html>
