@@ -32,30 +32,31 @@ function startup() {
 
 // Performed ONCE during startup (body onload). Populates #homepage__main
 function generateHomepage() {
-	for (cat = 0; cat < totalCats; cat++) {
-		catBtnId = `cat${cat}Btn`;
-		catBtnText = factsObj[cat].config.catTitle;
+	for (let i = 0; i < totalCats; i++) {
+		catBtnId = `cat${i}Btn`;
+		catBtnText = factsObj[i].config.catTitle;
 		catBtnContainer = document.createElement('div');
-		catBtnContainer.style.backgroundColor = factsObj[cat].config.catColor;
+		catBtnContainer.style.backgroundColor = factsObj[i].config.catColor;
 		catBtnContainer.classList.add("catBtnContainer", "animate-right");
-		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${cat})" id="${catBtnId}">${catBtnText}</div>`;
+		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${i})" id="${catBtnId}">${catBtnText}</div>`;
 
 		$('homepage__main').appendChild(catBtnContainer);
 
 		// totalSubcats -1 to skip the "config" object
-		totalSubcats = Object.keys(factsObj[cat]).length-1;
-		for(subcat = 0; subcat < totalSubcats; subcat ++) {
+		totalSubcats = Object.keys(factsObj[i]).length-1;
+		for(let ii = 0; ii < totalSubcats; ii++) {
 			subcatBtnContainer = document.createElement('div');
-			subcatBtnText = factsObj[cat][subcat].config.subcatTitle;
-			subcatBtnId = `subcat${cat}_${subcat}Btn`;
+			subcatBtnText = factsObj[i][ii].config.subcatTitle;
+			subcatBtnId = `subcat${i}_${ii}Btn`;
+			slide = factsObj[i][ii].config.index;
 
-			subcatBtnContainer.style.backgroundImage = `linear-gradient(${factsObj[cat][subcat].config.subcatColor}, ${factsObj[cat][subcat].config.subcatColor}, black)`;
+			subcatBtnContainer.style.backgroundColor = factsObj[i][ii].config.subcatColor;
 
-			subcatBtnContainer.id = `subcat${cat}_${subcat}`;
+			subcatBtnContainer.id = `subcat${i}_${ii}`;
 			subcatBtnContainer.classList.add("subcatBtnContainer");
 			subcatBtnContainer.classList.add("hide");
 
-			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right ${delay}" onclick="showSlide(${cat}, ${subcat}, 0)" id="${subcatBtnId}">${subcatBtnText}</div>`;
+			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right ${delay}" onclick="showSlide(${i}, ${ii}, ${slide})" id="${subcatBtnId}">${subcatBtnText}</div>`;
 			
 			$('homepage__main').appendChild(subcatBtnContainer);
 		}
@@ -63,24 +64,27 @@ function generateHomepage() {
 }
 
 function showHomepage(){
-	$('homepage').style.display = "flex-column";
-	$('slidepage').style.display = "none";
+	$('homepage').style.display = 'flex';
+	$('homepage').style.flexFlow = 'column';
+	$('slidepage').style.display = 'none';
 }
 
 function showSubcats(cat){
 	totalSubcats = Object.keys(factsObj[cat]).length-1;
-	for(i = 0; i < totalSubcats; i ++) {
-		let subcatId = `subcat${cat}_${i}`;
-		$(subcatId).classList.toggle("hide");
+	for(let ii = 0; ii < totalSubcats; ii++) {
+		let subcatId = `subcat${cat}_${ii}`;
+		$(subcatId).classList.toggle('hide');
 	}
 }
 
-function showSlide(cat, subcat, slide){
-	totalSubcatSlides = Object.keys(factsObj[0][0]).length -1;
+function showSlide(cat, subcat) {
+	cat = factsObj[cat];
+	sub = factsObj[cat][subcat];
 	slide = factsObj[cat][subcat].config.index;
+	totalSubcatSlides = Object.keys(factsObj[cat][subcat]).length -1;
 
 	if(slide > totalSubcatSlides ) { slide = 0; }
-	if(slide < 0) { slide = totalSubcatSlides }
+	if(slide < 0) { slide = totalSubcatSlides; }
 	
 	console.log(`${slide} of ${totalSubcatSlides}`);	
 	
@@ -90,13 +94,15 @@ function showSlide(cat, subcat, slide){
 	$('slide__text').innerHTML = factsObj[cat][subcat][slide].text;
 
 	$('homepage').style.display = 'none';
-	$('slidepage').style.display = 'flex-column';
+	$('slidepage').style.display = 'flex';
+	$('slidepage').style.flexFlow = 'column';
 }
 
 function changeSlide(n) {
-	index += n;
-	factsObj[cat][subcat].config.index = index;
-	showSlide(index);
+	slide += n;
+	console.log(cat, subcat, slide, n);
+	showSlide(cat, subcat, slide);
+	factsObj[cat][subcat].config.index = slide;
 }
 
 function slideClicked() {

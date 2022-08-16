@@ -29,8 +29,9 @@ body {
 
 .catBtn,
 .subcatBtn {
-	padding: 10px 10%;
 	width: 100%;
+	margin: 1px 0;
+	padding: 10px 10%;
 	cursor: pointer;
 }
 
@@ -51,7 +52,7 @@ body {
 }
 
 .subcatBtn {
-	background-color: #223
+	background-color: #223;
 }
 
 /* IDs */
@@ -65,7 +66,8 @@ body {
 }
 
 #slide {
-	background-color: red;
+	display: flex;
+	flex-flow: column;
 }
 
 .slide__img {
@@ -73,8 +75,10 @@ body {
 }
 
 #slide__text {
-	position: absolute;
 	background-color: #111;
+	position: absolute;
+	color: white;
+	border-radius: 5px;
 }
 
 #slide__text:active {
@@ -101,7 +105,7 @@ body {
 
 /* Utility Classes */
 .hide {
-	display: none !important;
+	display: none;
 }
 .width100 {
 	width: 100%;
@@ -132,6 +136,10 @@ body {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+}
+
+.text-center {
+	text-align: center;
 }
 
 .space-between {
