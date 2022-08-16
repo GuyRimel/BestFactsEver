@@ -3,6 +3,7 @@
   margin: 0;
 	font-family: Roboto, 'Courier New', Courier, monospace;
 	color: white;
+	cursor: default;
 }
 
 body,
@@ -93,14 +94,20 @@ header {
 /* Specific Classes */
 .catBtnContainer,
 .subcatBtnContainer {
-	margin-bottom: 10px;
+	border: 1px solid #222;
+	margin-bottom: .6em;
+	padding: 0;
 	width: 100%;
+}
+
+.catBtnContainer:last-child {
+	margin-bottom: 1.2em;
 }
 
 .catBtn,
 .subcatBtn {
 	width: 100%;
-	margin: 2px 0;
+	margin: 1px 0;
 	padding: 10px 10%;
 	cursor: pointer;
 }
@@ -132,10 +139,6 @@ header {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-}
-
-#homepage__header {
-	font-family: 'Courier New', Courier, monospace;
 }
 
 #slidepage__header {

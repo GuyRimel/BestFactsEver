@@ -91,11 +91,13 @@ function showSlide(c, sc) {
 	}
 
 	factsObj[c][sc].config.index = slide;
-	console.log(`${slide + 1} of ${totalSubcatSlides}`);
 
-	$('slidepage__title').innerHTML= `${factsObj[c].config.catTitle} | ${factsObj[c][sc].config.subcatTitle}`;
-	$('slidepage__pageTracker').innerHTML= `${slide + 1} of ${totalSubcatSlides}`;
 	$('slidepage').style.backgroundImage = `linear-gradient(${subcatColor}, ${catColor}, black)`;
+	$('slidepage__catTitle').innerHTML = factsObj[c].config.catTitle;
+	$('slidepage__catTitle').style.color = catColor;
+	$('slidepage__subcatTitle').innerHTML = factsObj[c][sc].config.subcatTitle;
+	$('slidepage__subcatTitle').style.color = subcatColor;
+	$('slidepage__pageTracker').innerHTML = `${slide + 1} of ${totalSubcatSlides}`;
 	$('slide__img').src =  `img/${factsObj[c].config.catTitle}/${factsObj[c][sc].config.subcatTitle}/${factsObj[c][sc][slide].pic}`;
 	$('slide__img').alt =  `src is... img/${factsObj[c].config.catTitle}/${factsObj[c][sc].config.subcatTitle}/${factsObj[c][sc][slide].pic}`;
 	$('slide__text').innerHTML = factsObj[c][sc][slide].text;
@@ -108,7 +110,7 @@ function showSlide(c, sc) {
 function changeSlide(n) {
 	factsObj[cat][subcat].config.index += n;
 
-	console.log(cat, subcat, slide, totalSubcatSlides, n);
+	console.log(`cat:${cat}, subcat:${subcat}, slide:${slide}, of:${totalSubcatSlides}, change:${n}`);
 	showSlide(cat, subcat);
 }
 
