@@ -14,7 +14,6 @@ let catBtnContainer;
 let catBtnId;
 let catBtnText;
 let subcatBtnContainer;
-let delay = 0;
 let totalSubcats;
 let catColor;
 let subcatColor;
@@ -53,10 +52,9 @@ function generateHomepage() {
 			subcatBtnContainer.style.backgroundColor = factsObj[i][ii].config.subcatColor;
 
 			subcatBtnContainer.id = `subcat${i}_${ii}`;
-			subcatBtnContainer.classList.add("subcatBtnContainer");
-			subcatBtnContainer.classList.add("hide");
+			subcatBtnContainer.classList.add("subcatBtnContainer", "hide");
 
-			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right ${delay}" onclick="showSlide(${i}, ${ii}, ${slide})" id="${subcatBtnId}">${subcatBtnText}</div>`;
+			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right" onclick="showSlide(${i}, ${ii})" id="${subcatBtnId}">${subcatBtnText}</div>`;
 			
 			$('homepage__main').appendChild(subcatBtnContainer);
 		}
@@ -69,29 +67,38 @@ function showHomepage(){
 	$('slidepage').style.display = 'none';
 }
 
-function showSubcats(cat){
-	totalSubcats = Object.keys(factsObj[cat]).length-1;
+function showSubcats(c){
+	totalSubcats = Object.keys(factsObj[c]).length-1;
 	for(let ii = 0; ii < totalSubcats; ii++) {
-		let subcatId = `subcat${cat}_${ii}`;
+		let subcatId = `subcat${c}_${ii}`;
 		$(subcatId).classList.toggle('hide');
 	}
 }
 
-function showSlide(cat, subcat) {
-	cat = factsObj[cat];
-	sub = factsObj[cat][subcat];
-	slide = factsObj[cat][subcat].config.index;
-	totalSubcatSlides = Object.keys(factsObj[cat][subcat]).length -1;
+function showSlide(c, sc) {
+	cat = c;
+	subcat = sc;
+	slide = factsObj[c][sc].config.index;
+	totalSubcatSlides = Object.keys(factsObj[c][sc]).length -1;
 
-	if(slide > totalSubcatSlides ) { slide = 0; }
-	if(slide < 0) { slide = totalSubcatSlides; }
-	
-	console.log(`${slide} of ${totalSubcatSlides}`);	
-	
-	$('slidepage').style.backgroundImage = "linear-gradient("+factsObj[cat][subcat].config.subcatColor+", "+factsObj[cat].config.catColor+",black)";
-	$('slide__img').src =  'img/' + factsObj[cat].config.catTitle + '/' + factsObj[cat][subcat].config.subcatTitle + '/' + factsObj[cat][subcat][slide].pic;
-	$('slide__img').alt =  'image src is... ' + 'img/' + factsObj[cat].config.catTitle + '/' + factsObj[cat][subcat].config.subcatTitle + '/' +  factsObj[cat][subcat][slide].pic;
-	$('slide__text').innerHTML = factsObj[cat][subcat][slide].text;
+	catColor = factsObj[c].config.catColor;
+	subcatColor = factsObj[c][sc].config.subcatColor;
+
+	if(slide < 0) {
+		slide = totalSubcatSlides - 1;
+	} else if (slide > totalSubcatSlides - 1) {
+		slide = 0;
+	}
+
+	factsObj[c][sc].config.index = slide;
+	console.log(`${slide + 1} of ${totalSubcatSlides}`);
+
+	$('slidepage__title').innerHTML= `${factsObj[c].config.catTitle} | ${factsObj[c][sc].config.subcatTitle}`;
+	$('slidepage__pageTracker').innerHTML= `${slide + 1} of ${totalSubcatSlides}`;
+	$('slidepage').style.backgroundImage = `linear-gradient(${subcatColor}, ${catColor}, black)`;
+	$('slide__img').src =  `img/${factsObj[c].config.catTitle}/${factsObj[c][sc].config.subcatTitle}/${factsObj[c][sc][slide].pic}`;
+	$('slide__img').alt =  `src is... img/${factsObj[c].config.catTitle}/${factsObj[c][sc].config.subcatTitle}/${factsObj[c][sc][slide].pic}`;
+	$('slide__text').innerHTML = factsObj[c][sc][slide].text;
 
 	$('homepage').style.display = 'none';
 	$('slidepage').style.display = 'flex';
@@ -99,16 +106,15 @@ function showSlide(cat, subcat) {
 }
 
 function changeSlide(n) {
-	slide += n;
-	console.log(cat, subcat, slide, n);
-	showSlide(cat, subcat, slide);
-	factsObj[cat][subcat].config.index = slide;
+	factsObj[cat][subcat].config.index += n;
+
+	console.log(cat, subcat, slide, totalSubcatSlides, n);
+	showSlide(cat, subcat);
 }
 
 function slideClicked() {
 	$('slide__text').classList.toggle("hide");
-	$('slide__title').classList.toggle("hide");
+	$('slidepage__header').classList.toggle("hide");
 	$('navBtnContainer').classList.toggle("hide");
-	$('slide').classList.toggle("fullscreen");
-	$('slide__img').classList.toggle("height-95vh");
+	$('slide').classList.toggle("vh100");
 }

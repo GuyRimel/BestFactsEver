@@ -7,13 +7,12 @@
 	<!-- Style Links -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Inconsolata:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<!-- <link rel="stylesheet" type="text/css" href="css/style.production.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/style.draft.css">
 </head>
 
 <body onload="startup()">
-	<section id="homepage">
-		<header id="homepage__header" class="flex-row header center width100">
+	<section id="homepage" class="overflow-hidden">
+		<header id="homepage__header" class="flex-row center vh15">
 			<h1>Best Facts Ever</h1>
 			<a class="absolute-right pad10">
 				gearicon
@@ -26,36 +25,28 @@
 		</main>
 	</section>
 
-	<section id="slidepage">
-		<header id="slidepage__header" class="header center space-between width100">
+	<section id="slidepage" class="overflow-hidden vh100">
+		<header id="slidepage__header" class="flex-row center space-between vh15">
 			<!-- "homeicon" "Category Title" " | " " Subcategory Title" -->
-			<div id="slidepage__title" class=" flex-row center">
-				<h1 onclick="showHomepage()" id="homeIcon" class="pad5">&#8962;</h1>
-				<h1 id="catTitle">Category Title</h1>
-				<h1 class="pad5"> | </h1>
-				<h1 id="subcatTitle">Subcategory Title</h1>
-				<h1 class="pad5"> | </h1>
-
+			<div class=" flex-row center">
+				<h1 onclick="showHomepage()" class="pointer pad10">&#8962;</h1>
+				<h2 id="slidepage__title">Category Title | Subcategory Title</h2>
 				<!-- "1" " of " "100" -->
-				<div id="slidepage__pageTracker" class="flex-row center">
-					<div id="slidepage__index">1</div>
-					<h1 class="pad5"> of </h1>
-					<div id="slidepage__totalSlides">100</div>
-				</div>
+				<h2 id="slidepage__pageTracker" class="pad10">1 of 100</h2>
 			</div>
 			<a class="pad10">
 				gearicon
 			</a>
 		</header>
 
-		<main id="slide" class="animate-bottom center" onclick="slideClicked()">
+		<main id="slide" class="animate-bottom center w100 vh70" onclick="slideClicked()">
 			<img id="slide__img">
 			<div id="slide__text" class="center pad10">this is the slide text</div>
 		</main>
 		
-		<div id="navBtnContainer" class="flex-row width100">
-			<button class="width50" onclick="changeSlide(-1)">&#10094;</button>
-			<button class="width50" onclick="changeSlide(1)">&#10095;</button>
+		<div id="navBtnContainer" class="flex-row w100 vh15">
+			<button class="w50" onclick="changeSlide(-1)">&#10094;</button>
+			<button class="w50" onclick="changeSlide(1)">&#10095;</button>
 		</div>
 	</section>
 
