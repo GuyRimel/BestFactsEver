@@ -1,26 +1,11 @@
-// totalCats is -1 bc of the "config" object
-let totalCats = Object.keys(factsObj).length-1;
-
-// Structure: category (mythology) > sub-category (greek) > current index (slide) of (totalSubcatSlides)
-// Any variable with "total" or "Num" refers to a number type
 let cat;
 let subcat;
 let slide;
 let totalSubcatSlides;
 
-// Declarations for element creation;
-// totalCats - 1 to skip the "config" object
-let catBtnContainer;
-let catBtnId;
-let catBtnText;
-let subcatBtnContainer;
-let totalSubcats;
-let catColor;
-let subcatColor;
-
 // $(idString) == document.getElementById(idString);
-function $(id) { 
-	return document.getElementById(id); 
+function $(selector) { 
+	return document.querySelector(selector);
 }
 
 // Attached to <body onload="">
@@ -31,23 +16,25 @@ function startup() {
 
 // Performed ONCE during startup (body onload). Populates #homepage__main
 function generateHomepage() {
+	// totalCats is -1 bc of the "config" object
+	let totalCats = Object.keys(factsObj).length-1;
 	for (let i = 0; i < totalCats; i++) {
-		catBtnId = `cat${i}Btn`;
-		catBtnText = factsObj[i].config.catTitle;
-		catBtnContainer = document.createElement('div');
+		let catBtnId = `cat${i}Btn`;
+		let catBtnText = factsObj[i].config.catTitle;
+		let catBtnContainer = document.createElement('div');
+		let homepageMainElement = $('#homepage__main')
 		catBtnContainer.style.backgroundColor = factsObj[i].config.catColor;
 		catBtnContainer.classList.add("catBtnContainer", "animate-right");
 		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${i})" id="${catBtnId}">${catBtnText}</div>`;
 
-		$('homepage__main').appendChild(catBtnContainer);
+		homepageMainElement.appendChild(catBtnContainer);
 
 		// totalSubcats -1 to skip the "config" object
-		totalSubcats = Object.keys(factsObj[i]).length-1;
+		let totalSubcats = Object.keys(factsObj[i]).length-1;
 		for(let ii = 0; ii < totalSubcats; ii++) {
-			subcatBtnContainer = document.createElement('div');
-			subcatBtnText = factsObj[i][ii].config.subcatTitle;
-			subcatBtnId = `subcat${i}_${ii}Btn`;
-			slide = factsObj[i][ii].config.index;
+			let subcatBtnContainer = document.createElement('div');
+			let subcatBtnText = factsObj[i][ii].config.subcatTitle;
+			let subcatBtnId = `subcat${i}_${ii}Btn`;
 
 			subcatBtnContainer.style.backgroundColor = factsObj[i][ii].config.subcatColor;
 
@@ -56,21 +43,21 @@ function generateHomepage() {
 
 			subcatBtnContainer.innerHTML = `<div class="subcatBtn animate-right" onclick="showSlide(${i}, ${ii})" id="${subcatBtnId}">${subcatBtnText}</div>`;
 			
-			$('homepage__main').appendChild(subcatBtnContainer);
+			$('#homepage__main').appendChild(subcatBtnContainer);
 		}
 	}
 }
 
 function showHomepage(){
-	$('homepage').style.display = 'flex';
-	$('homepage').style.flexFlow = 'column';
-	$('slidepage').style.display = 'none';
+	$('#homepage').style.display = 'flex';
+	$('#homepage').style.flexFlow = 'column';
+	$('#slidepage').style.display = 'none';
 }
 
 function showSubcats(c){
-	totalSubcats = Object.keys(factsObj[c]).length-1;
+	let totalSubcats = Object.keys(factsObj[c]).length-1;
 	for(let ii = 0; ii < totalSubcats; ii++) {
-		let subcatId = `subcat${c}_${ii}`;
+		let subcatId = `#subcat${c}_${ii}`;
 		$(subcatId).classList.toggle('hide');
 	}
 }
@@ -92,19 +79,20 @@ function showSlide(c, sc) {
 
 	factsObj[c][sc].config.index = slide;
 
-	$('slidepage').style.backgroundImage = `linear-gradient(${subcatColor}, ${catColor}, black)`;
-	$('slidepage__catTitle').innerText = factsObj[c].config.catTitle;
-	$('slidepage__catTitle').style.color = catColor;
-	$('slidepage__subcatTitle').innerText = factsObj[c][sc].config.subcatTitle;
-	$('slidepage__subcatTitle').style.color = subcatColor;
-	$('slidepage__pageTracker').innerHTML = `${slide + 1} of ${totalSubcatSlides}`;
-	$('slide__img').src =  `img/${factsObj[c].config.catTitle.toLowerCase()}/${factsObj[c][sc].config.subcatTitle.toLowerCase()}/${factsObj[c][sc][slide].pic}`;
-	$('slide__img').alt =  `picture for ${factsObj[c][sc].config.subcatTitle} slide ${slide + 1}`;
-	$('slide__text').innerHTML = factsObj[c][sc][slide].text;
+	$('#slidepage').style.backgroundImage = `linear-gradient(${subcatColor}, ${catColor}, black)`;
+	$('#slidepage__catTitle').innerText = factsObj[c].config.catTitle;
+	$('#slidepage__catTitle').style.color = catColor;
+	$('#slidepage__subcatTitle').innerText = factsObj[c][sc].config.subcatTitle;
+	$('#slidepage__subcatTitle').style.color = subcatColor;
+	$('#slidepage__pageTracker').innerHTML = `${slide + 1} of ${totalSubcatSlides}`;
+	$('#slide__img').src = `img/${factsObj[c].config.catTitle.toLowerCase()}/${factsObj[c][sc].config.subcatTitle.toLowerCase()}/${factsObj[c][sc][slide].pic}`;
+	$('#slide__img').alt =  `picture for ${factsObj[c][sc].config.subcatTitle} slide ${slide + 1}`;
+	$('#slide__text').innerHTML = factsObj[c][sc][slide].text;
 
-	$('homepage').style.display = 'none';
-	$('slidepage').style.display = 'flex';
-	$('slidepage').style.flexFlow = 'column';
+	$('#homepage').style.display = 'none';
+	$('#slidepage').style.display = 'flex';
+	$('#slidepage').style.flexFlow = 'column';
+
 }
 
 function changeSlide(n) {
@@ -115,8 +103,8 @@ function changeSlide(n) {
 }
 
 function slideClicked() {
-	$('slide__text').classList.toggle("hide");
-	$('slidepage__header').classList.toggle("hide");
-	$('navBtnContainer').classList.toggle("hide");
-	$('slide').classList.toggle("vh100");
+	$('#slide__text').classList.toggle("hide");
+	$('#slidepage__header').classList.toggle("hide");
+	$('#navBtnContainer').classList.toggle("hide");
+	$('#slide').classList.toggle("vh100");
 }
