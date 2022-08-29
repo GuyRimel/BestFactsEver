@@ -98,7 +98,7 @@ function showSlide(c, sc) {
 	$('slidepage__subcatTitle').innerText = factsObj[c][sc].config.subcatTitle;
 	$('slidepage__subcatTitle').style.color = subcatColor;
 	$('slidepage__pageTracker').innerHTML = `${slide + 1} of ${totalSubcatSlides}`;
-	$('slide__img').src =  `img/${factsObj[c].config.catTitle.toLowerCase()}/${factsObj[c][sc].config.subcatTitle.toLowerCase()}/${factsObj[c][sc][slide].pic.toLowerCase()}`;
+	$('slide__img').src =  `img/${factsObj[c].config.catTitle.toLowerCase()}/${factsObj[c][sc].config.subcatTitle.toLowerCase()}/${factsObj[c][sc][slide].pic}`;
 	$('slide__img').alt =  `picture for ${factsObj[c][sc].config.subcatTitle} slide ${slide + 1}`;
 	$('slide__text').innerHTML = factsObj[c][sc][slide].text;
 
