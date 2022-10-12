@@ -13,6 +13,10 @@ html {
 	height: 100vh;
 }
 
+h1 {
+	color: #656575;
+}
+
 header {
 	background-color: #222;
 	padding: 20px;
@@ -89,6 +93,10 @@ header {
 
 .overflow-hidden {
 	overflow: hidden;
+}
+
+.overflow-x-hidden {
+	overflow-x: hidden;
 }
 
 /* Specific Classes */
@@ -168,6 +176,12 @@ header {
 	position: absolute;
 	color: white;
 	border-radius: 5px;
+}
+
+.ref { color: #aaa}
+
+.catImg {
+	height: 60px;
 }
 
 #slide__text:active {

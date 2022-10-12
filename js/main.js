@@ -21,11 +21,13 @@ function generateHomepage() {
 	for (let i = 0; i < totalCats; i++) {
 		let catBtnId = `cat${i}Btn`;
 		let catBtnText = factsObj[i].config.catTitle;
+		let catPathName = factsObj[i].config.catPathName;
+		let catImg = factsObj[i].config.catImg;
 		let catBtnContainer = document.createElement('div');
 		let homepageMainElement = $('#homepage__main')
 		catBtnContainer.style.backgroundColor = factsObj[i].config.catColor;
 		catBtnContainer.classList.add("catBtnContainer", "animate-right");
-		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${i})" id="${catBtnId}">${catBtnText}</div>`;
+		catBtnContainer.innerHTML = `<button class="catBtn" onclick="showSubcats(${i})" id="${catBtnId}"><img class="catImg" src="img/${catPathName}/${catImg}"><br>${catBtnText}</div>`;
 
 		homepageMainElement.appendChild(catBtnContainer);
 
@@ -84,11 +86,12 @@ function showSlide(c, sc) {
 	$('#slidepage__catTitle').style.color = catColor;
 	$('#slidepage__subcatTitle').innerText = factsObj[c][sc].config.subcatTitle;
 	$('#slidepage__subcatTitle').style.color = subcatColor;
-	$('#slidepage__pageTracker').innerHTML = `${slide + 1} of ${totalSubcatSlides}`;
-	$('#slide__img').src = `img/${factsObj[c].config.catTitle.toLowerCase()}/${factsObj[c][sc].config.subcatTitle.toLowerCase()}/${factsObj[c][sc][slide].pic}`;
+	$('#slidepage__pageTracker').innerText = `${slide + 1} of ${totalSubcatSlides}`;
+	$('#slide__img').src = `img/${factsObj[c].config.catPathName}/${factsObj[c][sc].config.subcatPathName}/${factsObj[c][sc][slide].pic}`;
 	$('#slide__img').alt =  `picture for ${factsObj[c][sc].config.subcatTitle} slide ${slide + 1}`;
-	$('#slide__text').innerHTML = factsObj[c][sc][slide].text;
-
+	$('#slide__text').innerHTML = 
+		`${factsObj[c][sc][slide].text}
+		<a class="ref" href="${factsObj[c][sc][slide].reference}" target="_blank">(Reference)</a>`;
 	$('#homepage').style.display = 'none';
 	$('#slidepage').style.display = 'flex';
 	$('#slidepage').style.flexFlow = 'column';
