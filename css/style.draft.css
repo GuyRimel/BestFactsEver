@@ -4,6 +4,7 @@
 	font-family: Roboto, 'Courier New', Courier, monospace;
 	color: white;
 	cursor: default;
+	user-select: none;
 }
 
 body,
@@ -20,7 +21,6 @@ h1 {
 header {
 	background-color: #222;
 	padding: 20px;
-	margin-bottom: 10px;
 }
 
 /* Utility Classes */
@@ -151,8 +151,8 @@ header {
 
 #slidepage__header {
 	background-color: #222;
-	text-overflow: none;
-	white-space:nowrap;
+	padding: 0;
+	margin: 0;
 }
 
 #slidepage__header:focus,
@@ -163,22 +163,24 @@ header {
 #slide {
 	display: flex;
 	flex-flow: column;
-	object-fit: contain;
+	/* object-fit: contain; */
 }
 
 #slide__img {
 	width: auto;
 	height: 100%;
+	padding: 0 1em;
 }
 
 #slide__text {
-	background-color: #111;
 	position: absolute;
+	font-family: Rokkitt;
+	background-image: linear-gradient(rgba(60,60,60,0.5), #222 5%, #111 95%, rgba(60,60,60,0.5));
 	color: white;
-	border-radius: 5px;
+	text-align: left;
 }
 
-.ref { color: #aaa}
+.ref { color: #aaa }
 
 .catImg {
 	height: 60px;
